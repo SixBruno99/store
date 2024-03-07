@@ -1,9 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export function Header() {
   return (
-    <Box width="full" height="14">
-      Header
-    </Box>
+    <Flex width="full" height="14" alignItems="center" justifyContent="center">
+      <Text fontWeight="bold">Header</Text>
+    </Flex>
   );
 }
