@@ -1,9 +1,9 @@
-import { Box } from "@chakra-ui/react";
+import { Flex, Text } from "@chakra-ui/react";
 
 export function Footer() {
   return (
-    <Box width="full" height="14">
-      Footer
-    </Box>
+    <Flex width="full" height="14" alignItems="center" justifyContent="center">
+      <Text fontWeight="bold">API used: akestoreapi.com</Text>
+    </Flex>
   );
 }
