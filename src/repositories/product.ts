@@ -17,9 +17,9 @@ export const ProductRepository = {
       console.log(error)
     }
   },
-  findByCategory: async () => {
+  findByCategory: async (category: string) => {
     try {
-      const response = await http.get(`/products/categories`)
+      const response = await http.get(`/products/category/${category}`)
       return response.data
     } catch (error) {
       console.log(error)
