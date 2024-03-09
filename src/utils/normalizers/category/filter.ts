@@ -1,5 +1,5 @@
-export function CategoryFilterNormalizer(status: string) {
-  switch (status) {
+export function CategoryFilterNormalizer(category: string) {
+  switch (category) {
     case "electronics":
       return "Eletrônicos"
     case "jewelery":
@@ -9,6 +9,6 @@ export function CategoryFilterNormalizer(status: string) {
     case "women's clothing":
       return "Roupa Feminina"
     default:
-      return ""
+      return category
   }
 }

@@ -1,4 +1,5 @@
 import { Flex, useMediaQuery } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 
 // Styles
 import "swiper/css";
@@ -16,13 +17,14 @@ import { useProduct } from "../contexts/product";
 
 // Components
 import { Product } from "../core/components/products";
+import { Filters } from "../core/components/filter";
 
 export function Home() {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
 
-  const { products, categories } = useProduct();
-  console.log("products", products);
-  console.log("categories", categories);
+  const { filteredProducts, categories, setCategoryFilter } = useProduct();
+  // console.log("products", products);
+  // console.log("categories", categories);
 
   return (
     <Flex
@@ -34,6 +36,7 @@ export function Home() {
       flexDirection="column"
       minHeight="calc(100vh - 112px)"
     >
+      <Filters />
       <Flex maxWidth="full">
         <Swiper
           slidesPerView={isLargerThan1024 ? 4 : 1}
@@ -51,7 +54,7 @@ export function Home() {
           navigation={isLargerThan1024 ? true : false}
           modules={[Pagination, Keyboard, Navigation, Autoplay]}
         >
-          {products.map((product, index) => (
+          {filteredProducts .map((product, index) => (
             <SwiperSlide data-hash={`slide${index}`} key={product.id}>
               <Product
                 id={product.id}
