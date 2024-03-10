@@ -1,5 +1,4 @@
 import { Flex, useMediaQuery } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
 
 // Styles
 import "swiper/css";
@@ -22,7 +21,7 @@ import { Filters } from "../core/components/filter";
 export function Home() {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
 
-  const { filteredProducts, categories, setCategoryFilter } = useProduct();
+  const { filteredProducts } = useProduct();
   // console.log("products", products);
   // console.log("categories", categories);
 
