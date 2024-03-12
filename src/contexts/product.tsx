@@ -37,11 +37,12 @@ export function ProductProvider({ children }: IProps) {
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const filterByName = (search: string) => {
+    if (search === "") findAll();
     if (!search) return;
     console.log("search", search);
 
-    const filteredProducts = products.filter(
-      (product) => product.title.includes(search)
+    const filteredProducts = products.filter((product) =>
+      product.title.toLowerCase().includes(search)
     );
     console.log("produtos filtrados:", filteredProducts);
 
@@ -76,7 +77,14 @@ export function ProductProvider({ children }: IProps) {
 
   return (
     <ProductContext.Provider
-      value={{ products, filteredProducts, categories, findAll, filterByName, filterByCategory }}
+      value={{
+        products,
+        filteredProducts,
+        categories,
+        findAll,
+        filterByName,
+        filterByCategory,
+      }}
     >
       {children}
     </ProductContext.Provider>
