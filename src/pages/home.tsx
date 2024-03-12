@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from "@chakra-ui/react";
+import { Box, Flex, Heading, useMediaQuery } from "@chakra-ui/react";
 
 // Styles
 import "swiper/css";
@@ -15,13 +15,17 @@ import { Pagination, Navigation, Keyboard, Autoplay } from "swiper/modules";
 import { useProduct } from "../contexts/product";
 
 // Components
+import { ProductSection } from "../core/components/product-section";
 import { Product } from "../core/components/products";
 import { Filters } from "../core/components/filter";
+
+// Utils
+import { CategoryFilterNormalizer } from "../utils/normalizers/category/filter";
 
 export function Home() {
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
 
-  const { filteredProducts } = useProduct();
+  const { categories, filteredProducts } = useProduct();
   // console.log("products", products);
   // console.log("categories", categories);
 
@@ -35,10 +39,27 @@ export function Home() {
       flexDirection="column"
       minHeight="calc(100vh - 112px)"
     >
-      <Filters />
-      <Flex maxWidth="full">
+      <Box marginY={4}>
+        <Filters />
+      </Box>
+
+      <Box minWidth="7xl" maxWidth="full">
+        <Heading
+          color="white"
+          fontStyle="italic"
+          textAlign="center"
+          marginY={4}
+        >
+          Todos
+        </Heading>
         <Swiper
-          slidesPerView={isLargerThan1024 ? 4 : 1}
+          slidesPerView={
+            isLargerThan1024
+              ? filteredProducts.length >= 4
+                ? 4
+                : filteredProducts.length
+              : 1
+          }
           grabCursor={true}
           autoplay={{
             delay: 5000,
@@ -53,7 +74,7 @@ export function Home() {
           navigation={isLargerThan1024 ? true : false}
           modules={[Pagination, Keyboard, Navigation, Autoplay]}
         >
-          {filteredProducts .map((product, index) => (
+          {filteredProducts.map((product, index) => (
             <SwiperSlide data-hash={`slide${index}`} key={product.id}>
               <Product
                 id={product.id}
@@ -70,7 +91,21 @@ export function Home() {
             </SwiperSlide>
           ))}
         </Swiper>
-      </Flex>
+      </Box>
+      {categories.map((product, index) => (
+        <Box key={index} minWidth="7xl" maxWidth="full">
+          <Heading
+            color="white"
+            fontStyle="italic"
+            textAlign="center"
+            marginY={4}
+          >
+            {CategoryFilterNormalizer(product)}
+          </Heading>
+
+          <ProductSection category={product} />
+        </Box>
+      ))}
     </Flex>
   );
 }
