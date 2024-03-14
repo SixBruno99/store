@@ -44,12 +44,7 @@ export function Home() {
       </Box>
 
       <Box minWidth="7xl" maxWidth="full">
-        <Heading
-          color="white"
-          fontStyle="italic"
-          textAlign="center"
-          marginY={4}
-        >
+        <Heading fontStyle="italic" textAlign="center" marginY={4}>
           Todos
         </Heading>
         <Swiper
@@ -94,12 +89,7 @@ export function Home() {
       </Box>
       {categories.map((product, index) => (
         <Box key={index} minWidth="7xl" maxWidth="full">
-          <Heading
-            color="white"
-            fontStyle="italic"
-            textAlign="center"
-            marginY={4}
-          >
+          <Heading fontStyle="italic" textAlign="center" marginY={4}>
             {CategoryFilterNormalizer(product)}
           </Heading>
 
