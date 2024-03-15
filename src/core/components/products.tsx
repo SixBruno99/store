@@ -4,13 +4,17 @@ import {
   Collapse,
   Flex,
   Image,
+  Modal,
   Text,
+  useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IProduct } from "../../types/product";
+import { ProductInformation } from "./product-information";
 
 export const Product = (product: IProduct) => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
   const [isLargerThan764] = useMediaQuery("(min-width: 764px)");
   // const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
@@ -18,11 +22,6 @@ export const Product = (product: IProduct) => {
   const [show, setShow] = useState(false);
 
   const handleToggle = () => setShow(!show);
-
-  // function handleNavigate(navigator: string | undefined) {
-  //   if (!navigator) return;
-  //   window.open(`${navigator}`, "_blank");
-  // }
 
   return (
     <Box width="280px" marginX="auto" marginY="4rem" borderRadius="12px">
@@ -51,24 +50,12 @@ export const Product = (product: IProduct) => {
                 {product.description}
               </Text>
             </Collapse>
-            <Button variant='link' size="sm" onClick={handleToggle} mt="1rem">
+            <Button variant="link" size="sm" onClick={handleToggle} mt="1rem">
               Show {show ? "Less" : "More"}
             </Button>
           </Box>
-          {/* <Text color="white" fontSize={isLargerThan1024 ? "1.25rem" : "1rem"}>
-            {product.description}
-            {product.collaborator && (
-              <Link
-                href={product.collaborator.instagram}
-                fontWeight="bold"
-                isExternal
-              >
-                {product.collaborator.name}
-              </Link>
-            )}
-          </Text> */}
         </Flex>
-        {/* <Flex
+        <Flex
           width="full"
           marginY={isLargerThan764 ? 10 : 6}
           gap={4}
@@ -78,12 +65,16 @@ export const Product = (product: IProduct) => {
             width={isLargerThan1024 ? "120px" : "100px"}
             fontSize={isLargerThan1024 ? "1rem" : "0.75rem"}
             onClick={() => {
-              // handleNavigate(product.link);
+              onOpen();
+              console.log("produto clicado", product);
             }}
           >
             Vizualizar
           </Button>
-        </Flex> */}
+          <Modal isOpen={isOpen} onClose={onClose} size="4xl">
+            <ProductInformation product={product}/>
+          </Modal>
+        </Flex>
       </Box>
     </Box>
   );
