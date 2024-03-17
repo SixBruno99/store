@@ -32,8 +32,12 @@ interface IProps {
 }
 
 export function ProductProvider({ children }: IProps) {
+  // usar Reducers
   const [products, setProducts] = useState<IProduct[]>([]);
+  // usar Reducers
   const [categories, setCategories] = useState<string[]>([]);
+  // usar Reducers
+  // mudar pra useRef
   const [filteredProducts, setFilteredProducts] = useState<IProduct[]>([]);
 
   const filterByName = (search: string) => {
