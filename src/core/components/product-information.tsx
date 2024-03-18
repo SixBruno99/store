@@ -1,11 +1,12 @@
 import {
   Box,
   Flex,
+  Grid,
+  GridItem,
   Image,
   ModalBody,
   ModalCloseButton,
   ModalContent,
-  ModalHeader,
   ModalOverlay,
   Text,
 } from "@chakra-ui/react";
@@ -31,48 +32,54 @@ export const ProductInformation = ({ product }: IProps) => {
     <Box>
       <ModalOverlay />
       <ModalContent>
-        <Flex padding={8} gap={4}>
-          <ModalCloseButton />
-          <Image
-            src={product.image}
-            height="360px"
-            maxWidth="40%"
-            width="full"
-            objectFit="fill"
-            borderTopRadius="12px"
-          />
-          <ModalBody>
-            <Flex
-              height="full"
-              flexDirection="column"
-              justifyContent="space-between"
-            >
-              <Text fontSize={24} fontWeight="bold">
-                {product.title}
-              </Text>
-              <Box>
+        <ModalCloseButton />
+        <ModalBody>
+          <Grid templateColumns="repeat(2, 1fr)" padding={4} gap={4}>
+            <GridItem >
+              <Image
+                src={product.image} 
+                objectFit="fill"
+                borderTopRadius="12px"
+              />
+            </GridItem>
+            <GridItem>
+              <Flex
+                height="full"
+                flexDirection="column"
+                justifyContent="center"
+                gap={2}
+              >
                 <Text fontSize={24} fontWeight="bold">
-                  {CurrencyFormatter.format(product.price)} ou
+                  {product.title}
                 </Text>
-                <Text fontSize={16} fontWeight="semibold">
-                  em 6x {CurrencyFormatter.format(product.price / 6)}
-                </Text>
-              </Box>
-              <Box width="400px">
-                <Text>{product.description}</Text>
-              </Box>
-              <Flex gap={4}>
-                <Flex alignItems="center" gap={2}>
-                  <FaStar color="yellow" />
-                  <Text fontWeight="bold">{product.rating.rate}</Text>
+                <Box>
+                  <Text fontSize={24} fontWeight="bold">
+                    {CurrencyFormatter.format(product.price)} ou
+                  </Text>
+                  <Text fontSize={16} fontWeight="semibold">
+                    em 6x {CurrencyFormatter.format(product.price / 6)}
+                  </Text>
+                </Box>
+                <Box width="400px">
+                  <Text>{product.description}</Text>
+                </Box>
+                <Flex gap={4}>
+                  <Flex alignItems="center" gap={1}>
+                    <FaStar color="yellow" />
+                    <FaStar color="yellow" />
+                    <FaStar color="yellow" />
+                    <FaStar color="yellow" />
+                    <FaStar color="yellow" />
+                    <Text fontWeight="bold" marginLeft={1}>({product.rating.rate})</Text>
+                  </Flex>
                 </Flex>
-                <Text fontWeight="semibold">
-                  {product.rating.count} avaliações de clientes
-                </Text>
+                  <Text fontWeight="semibold" >
+                    {product.rating.count} avaliações de clientes
+                  </Text>
               </Flex>
-            </Flex>
-          </ModalBody>
-        </Flex>
+            </GridItem>
+          </Grid>
+        </ModalBody>
       </ModalContent>
     </Box>
   );
