@@ -10,6 +10,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { FaStar } from "react-icons/fa";
+import { CurrencyFormatter } from "../../utils/formatters/price";
 
 export interface IProps {
   product: {
@@ -30,12 +31,12 @@ export const ProductInformation = ({ product }: IProps) => {
     <Box>
       <ModalOverlay />
       <ModalContent>
-        <ModalHeader textAlign="center">{product.title}</ModalHeader>
         <Flex padding={8} gap={4}>
           <ModalCloseButton />
           <Image
             src={product.image}
             height="360px"
+            maxWidth="40%"
             width="full"
             objectFit="fill"
             borderTopRadius="12px"
@@ -47,8 +48,16 @@ export const ProductInformation = ({ product }: IProps) => {
               justifyContent="space-between"
             >
               <Text fontSize={24} fontWeight="bold">
-                R$ {product.price}
+                {product.title}
               </Text>
+              <Box>
+                <Text fontSize={24} fontWeight="bold">
+                  {CurrencyFormatter.format(product.price)} ou
+                </Text>
+                <Text fontSize={16} fontWeight="semibold">
+                  em 6x {CurrencyFormatter.format(product.price / 6)}
+                </Text>
+              </Box>
               <Box width="400px">
                 <Text>{product.description}</Text>
               </Box>

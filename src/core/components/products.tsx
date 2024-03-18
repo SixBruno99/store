@@ -1,7 +1,6 @@
 import {
   Box,
   Button,
-  Collapse,
   Flex,
   Image,
   Modal,
@@ -9,9 +8,10 @@ import {
   useDisclosure,
   useMediaQuery,
 } from "@chakra-ui/react";
-import { useState } from "react";
 import { IProduct } from "../../types/product";
 import { ProductInformation } from "./product-information";
+import { CurrencyFormatter } from "../../utils/formatters/price";
+import { FaStar } from "react-icons/fa";
 
 export const Product = (product: IProduct) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -19,21 +19,17 @@ export const Product = (product: IProduct) => {
   const [isLargerThan764] = useMediaQuery("(min-width: 764px)");
   // const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
 
-  const [show, setShow] = useState(false);
-
-  const handleToggle = () => setShow(!show);
-
   return (
-    <Box width="280px" marginX="auto" marginY="4rem" borderRadius="12px">
+    <Box width="240px" marginX="auto" marginY="4rem" borderRadius="12px">
       <Image
         src={product.image}
-        height="320px"
+        height="240px"
         width="full"
         objectFit="fill"
         borderTopRadius="12px"
       />
       <Box padding={4} backgroundColor="#27374D" borderBottomRadius="12px">
-        <Flex flexDirection="column" width="full" gap={isLargerThan764 ? 4 : 2}>
+        <Flex flexDirection="column" width="full" gap={2}>
           <Text
             color="white"
             fontWeight="bold"
@@ -44,24 +40,34 @@ export const Product = (product: IProduct) => {
           >
             {product.title}
           </Text>
-          <Box>
-            <Collapse startingHeight={20} in={show}>
-              <Text color="white" fontSize="1rem" opacity="0.5">
-                {product.description}
-              </Text>
-            </Collapse>
-            <Button variant="link" size="sm" onClick={handleToggle} mt="1rem">
-              Show {show ? "Less" : "More"}
-            </Button>
-          </Box>
+          <Text color="white" fontSize="1rem" fontWeight="bold" opacity="0.8">
+            {CurrencyFormatter.format(product.price)}
+          </Text>
+          <Flex alignItems="center">
+            <FaStar color="yellow" />
+            <FaStar color="yellow" />
+            <FaStar color="yellow" />
+            <FaStar color="yellow" />
+            <FaStar color="yellow" />
+            <Text
+              fontWeight="semibold"
+              color="white"
+              opacity="0.5"
+              marginLeft="8px"
+            >
+              ({product.rating.count})
+            </Text>
+          </Flex>
         </Flex>
         <Flex
           width="full"
-          marginY={isLargerThan764 ? 10 : 6}
-          gap={4}
+          borderTop="1px solid #F5F5F5"
           justifyContent="center"
+          marginTop={4}
         >
           <Button
+            variant="link"
+            marginTop={2}
             width={isLargerThan1024 ? "120px" : "100px"}
             fontSize={isLargerThan1024 ? "1rem" : "0.75rem"}
             onClick={() => {
@@ -72,7 +78,7 @@ export const Product = (product: IProduct) => {
             Vizualizar
           </Button>
           <Modal isOpen={isOpen} onClose={onClose} size="4xl">
-            <ProductInformation product={product}/>
+            <ProductInformation product={product} />
           </Modal>
         </Flex>
       </Box>
