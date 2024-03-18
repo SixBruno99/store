@@ -50,8 +50,8 @@ export function Home() {
         <Swiper
           slidesPerView={
             isLargerThan1024
-              ? filteredProducts.length >= 4
-                ? 4
+              ? filteredProducts.length >= 5
+                ? 5
                 : filteredProducts.length
               : 1
           }
