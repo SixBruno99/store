@@ -1,5 +1,7 @@
 export function CategoryFilterNormalizer(category: string) {
   switch (category) {
+    case "Todos":
+      return category
     case "electronics":
       return "Eletrônicos"
     case "jewelery":

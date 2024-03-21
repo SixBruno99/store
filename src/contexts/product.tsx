@@ -54,19 +54,22 @@ export function ProductProvider({ children }: IProps) {
   };
 
   const filterByCategory = (activeFilter: string) => {
+    console.log("activeFilter", activeFilter);
+
+    if (activeFilter === "Todos") return setFilteredProducts(products);
+
     if (!activeFilter) return;
 
     const filteredProducts = products.filter(
       (product) => product.category === activeFilter
     );
-    console.log("produtos filtrados:", filteredProducts);
-
     setFilteredProducts(filteredProducts);
   };
 
   async function findAll() {
     const products = await ProductRepository.findAll();
     const categories = await CategoryRepository.findAll();
+    categories.unshift("Todos");
 
     if (!products || !products.length) return;
 

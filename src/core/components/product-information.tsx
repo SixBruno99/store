@@ -35,9 +35,9 @@ export const ProductInformation = ({ product }: IProps) => {
         <ModalCloseButton />
         <ModalBody>
           <Grid templateColumns="repeat(2, 1fr)" padding={4} gap={4}>
-            <GridItem >
+            <GridItem>
               <Image
-                src={product.image} 
+                src={product.image}
                 objectFit="fill"
                 borderTopRadius="12px"
               />
@@ -70,12 +70,14 @@ export const ProductInformation = ({ product }: IProps) => {
                     <FaStar color="yellow" />
                     <FaStar color="yellow" />
                     <FaStar color="yellow" />
-                    <Text fontWeight="bold" marginLeft={1}>({product.rating.rate})</Text>
+                    <Text fontWeight="bold" marginLeft={1}>
+                      ({product.rating.rate})
+                    </Text>
                   </Flex>
                 </Flex>
-                  <Text fontWeight="semibold" >
-                    {product.rating.count} avaliações de clientes
-                  </Text>
+                <Text fontWeight="semibold">
+                  {product.rating.count} avaliações de clientes
+                </Text>
               </Flex>
             </GridItem>
           </Grid>
