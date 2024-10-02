@@ -1,16 +1,16 @@
 export function CategoryFilterNormalizer(category: string) {
   switch (category) {
     case "Todos":
-      return category
+      return category;
     case "electronics":
-      return "Eletrônicos"
+      return "Eletrônicos";
     case "jewelery":
-      return "Jóias"
+      return "Jóias";
     case "men's clothing":
-      return "Roupa Masculina"
+      return "Roupa Masculina";
     case "women's clothing":
-      return "Roupa Feminina"
+      return "Roupa Feminina";
     default:
-      return category
+      return category;
   }
 }

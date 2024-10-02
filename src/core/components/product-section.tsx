@@ -1,4 +1,4 @@
-import { Flex, useMediaQuery } from "@chakra-ui/react";
+import { useMediaQuery } from "@chakra-ui/react";
 
 import { Product } from "./products";
 import { useProduct } from "../../contexts/product";

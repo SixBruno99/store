@@ -16,7 +16,7 @@ import { FaStar } from "react-icons/fa";
 export const Product = (product: IProduct) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
-  const [isLargerThan764] = useMediaQuery("(min-width: 764px)");
+  // const [isLargerThan764] = useMediaQuery("(min-width: 764px)");
   // const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
 
   return (
