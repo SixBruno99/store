@@ -16,18 +16,17 @@ import { FaStar } from "react-icons/fa";
 export const Product = (product: IProduct) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
-  // const [isLargerThan764] = useMediaQuery("(min-width: 764px)");
-  // const [isLargerThan420] = useMediaQuery("(min-width: 420px)");
 
   return (
-    <Box width="240px" marginX="auto" marginY="4rem" borderRadius="12px">
-      <Image
-        src={product.image}
-        height="240px"
-        width="full"
-        objectFit="fill"
-        borderTopRadius="12px"
-      />
+    <Box width="324px" marginX="auto" marginY="4rem" borderRadius="12px">
+      <Box backgroundColor="white" borderTopRadius="12px" padding={8}>
+        <Image
+          src={product.image}
+          height="276px"
+          width="full"
+          objectFit="scale-down"
+        />
+      </Box>
       <Box padding={4} backgroundColor="#27374D" borderBottomRadius="12px">
         <Flex flexDirection="column" width="full" gap={2}>
           <Text
@@ -70,10 +69,7 @@ export const Product = (product: IProduct) => {
             marginTop={2}
             width={isLargerThan1024 ? "120px" : "100px"}
             fontSize={isLargerThan1024 ? "1rem" : "0.75rem"}
-            onClick={() => {
-              onOpen();
-              console.log("produto clicado", product);
-            }}
+            onClick={() => onOpen()}
           >
             Vizualizar
           </Button>

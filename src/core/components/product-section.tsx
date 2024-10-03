@@ -10,7 +10,8 @@ interface IProps {
 }
 
 export const ProductSection = ({ category }: IProps) => {
-  const [isLargerThan1024] = useMediaQuery("(min-width: 1024px)");
+  const [isLargerThan1464] = useMediaQuery("(min-width: 1464px)");
+  const [isLargerThan768] = useMediaQuery("(min-width: 768px)");
   const { products } = useProduct();
 
   return (
@@ -18,8 +19,8 @@ export const ProductSection = ({ category }: IProps) => {
       pagination={{
         clickable: true,
       }}
-      slidesPerView={isLargerThan1024 ? 4 : 1}
-      navigation={isLargerThan1024 ? true : false}
+      slidesPerView={isLargerThan1464 ? 3 : isLargerThan768 ? 2 : 1}
+      navigation={isLargerThan1464 ? true : false}
       modules={[Pagination, Keyboard, Navigation, Autoplay]}
     >
       {products
